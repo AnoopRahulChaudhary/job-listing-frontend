@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, use } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./UserRegistration.module.css";
 import { registerUser } from "../api/user";
-import { AxiosError } from "axios";
 
 function UserRegistration() {
+  const navigate = useNavigate();
   const [registrationData, setRegistrationData] = useState({
     name: "",
     email: "",
@@ -24,15 +25,20 @@ function UserRegistration() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const response = await registerUser(registrationData);
-      if (response.status == 201) {
-        setUserRegistered(true);
-      } else {
-        setErrorMessage(response.data.message);
+      const { data, errorMessage } = await registerUser(registrationData);
+      if (errorMessage) {
+        setErrorMessage(errorMessage);
+        return;
       }
+
+      setUserRegistered(true);
     } catch (error) {
       setErrorMessage("Faild to register.");
     }
+  }
+
+  function handleLoginClick(e) {
+    navigate("/login");
   }
 
   return (
@@ -68,6 +74,7 @@ function UserRegistration() {
         <br /> <br />
         <input type="submit" value="Register" />
         {userRegistered && <div>Registeration Successfull</div>}
+        {userRegistered && <button onClick={handleLoginClick}>Login</button>}
         {errorMessage && <div>{errorMessage}</div>}
       </form>
     </div>

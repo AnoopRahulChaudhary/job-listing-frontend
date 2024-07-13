@@ -1,4 +1,5 @@
 import axios from "axios";
+import { successResponse, errorResponse } from "./responseHandler";
 
 const baseURL = "http://localhost:4000";
 
@@ -9,16 +10,34 @@ async function registerUser(data) {
     });
 
     console.debug(response);
-    return response;
+    return successResponse(response);
   } catch (error) {
     console.error(error);
 
     if (error.response) {
-      return error.response;
+      return errorResponse(error.response);
     }
 
     throw error;
   }
 }
 
-export { registerUser };
+async function login(loginDetails) {
+  try {
+    const response = await axios.post(`${baseURL}/user/login`, {
+      ...loginDetails,
+    });
+
+    console.debug(response);
+    return successResponse(response);
+  } catch (error) {
+    console.error(error);
+    if (error.response) {
+      return errorResponse(error.response);
+    }
+
+    throw error;
+  }
+}
+
+export { registerUser, login };
