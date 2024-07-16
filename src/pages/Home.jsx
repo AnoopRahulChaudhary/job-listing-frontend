@@ -1,23 +1,15 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getJobs } from "../api/job";
 import PartialJobDetails from "../components/PartialJobDetails";
+import Header from "../components/Header";
 
 function Home() {
-  const navigate = useNavigate();
   const [jobs, setJobs] = useState([]);
   const [query, setQuery] = useState({
     title: "",
     skills: [],
   });
-
-  const loginUser = localStorage.getItem("username");
-
-  function handleLogout() {
-    window.sessionStorage.removeItem("token");
-    localStorage.removeItem("username");
-    navigate("/");
-  }
 
   async function fetchJobs() {
     const { statusCode, data, errorMessage } = await getJobs(query);
@@ -34,29 +26,9 @@ function Home() {
 
   return (
     <div>
-      <header>
-        <div>JobFinder</div>
-        <nav>
-          {!loginUser && (
-            <div>
-              <Link to="/login">Login</Link>
-            </div>
-          )}
-          {!loginUser && (
-            <div>
-              <Link to="/register">Register</Link>
-            </div>
-          )}
-          {loginUser && <button onClick={handleLogout}>Logout</button>}
-          {loginUser && <div>Hello {loginUser}</div>}
-        </nav>
-      </header>
+      <Header />
 
       <main>
-        <section id="filterSection">
-          {loginUser && <Link to="/addJob">AddJob</Link>}
-        </section>
-
         <section id="allJobs"></section>
 
         {jobs && jobs.map((job) => (

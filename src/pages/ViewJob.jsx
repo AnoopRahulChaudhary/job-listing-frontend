@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { getJob } from "../api/job";
 import { useState } from "react";
+import Header from "../components/Header";
 
 function ViewJob() {
     const [errorMessage, setErrorMessage] = useState('');
@@ -23,11 +24,12 @@ function ViewJob() {
     }
 
     return <div>
+        <Header />
         {errorMessage && <span>{errorMessage}</span>}
         {job && 
             <div>
-                <div style={{border: "1 px solid black", margin:"16px", padding: "16px"}}>{job.jobDescription}</div>
-                <div style={{border: "1 px solid black", padding: "16px"}}>
+                <div style={{border: "1px solid black", margin:"16px", padding: "16px"}}>{job.jobDescription}</div>
+                <div style={{border: "1px solid black", padding: "16px"}}>
                     <h2>{job.jobPosition}</h2>
                     <p>{job.location}</p>
                     <div>Stipend : {job.monthlySalary}</div>
