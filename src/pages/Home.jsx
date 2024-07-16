@@ -64,6 +64,7 @@ function Home() {
             companyName={job.companyName}
             title={job.jobPosition}
             skills={job.skills}
+            jobId={job._id}
           />
         ))}
       </main>

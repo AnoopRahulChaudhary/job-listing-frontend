@@ -19,6 +19,23 @@ async function getJobs({title, skills}) {
     
 }
 
+async function getJob(id) {
+  try {
+      console.debug(`received id to fetch data : ${id}`);
+      const response = await axios.get(`${baseURL}/job/${id}`);
+      console.debug(response);
+      return successResponse(response);
+  }catch(error) {
+      console.error(error);
+      if (error.response) {
+          return errorResponse(error.response);
+      }
+
+      throw error;
+  }
+  
+}
+
 async function addJob(jobDetails) {
   try {
     const config = {
@@ -43,4 +60,4 @@ async function addJob(jobDetails) {
   }
 }
 
-export {addJob, getJobs}
+export {addJob, getJobs, getJob}
