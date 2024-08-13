@@ -14,7 +14,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<UserRegistration />} />
         <Route path="/viewJob/:id" element={<ViewJob />} />
-        <Route path="/updateJob" element={<UpdateJob />} />
+        <Route path="/updateJob/:id" element={<UpdateJob />} />
         <Route path="/addJob" element={<AddJob />} />
       </Routes>
     </BrowserRouter>

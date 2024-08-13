@@ -61,17 +61,18 @@ function AddJob() {
 
   async function handleOnClickForAddJob(e) {
     console.debug(`job details to add : ${JSON.stringify(jobDetails)}`);
-    const {statusCode, data, errorMessage} = await addJob(jobDetails);
+    const { statusCode, data, errorMessage } = await addJob(jobDetails);
     if (statusCode !== 201) {
       setErrorMessage(errorMessage);
       return;
     }
 
     setSuccessMessage(data.message);
+    navigate("/");
   }
 
   function handleOnClickForCancel() {
-    navigate('/');
+    navigate("/");
   }
 
   return (

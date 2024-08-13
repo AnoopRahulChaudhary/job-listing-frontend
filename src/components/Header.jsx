@@ -8,8 +8,8 @@ function Header() {
 
   useEffect(() => {
     const username = localStorage.getItem("username");
-    if(username){
-        setCurrentUser({ username });
+    if (username) {
+      setCurrentUser({ username });
     }
   }, []);
 
@@ -20,15 +20,23 @@ function Header() {
     navigate("/");
   }
 
+  function handleLogoOnClick() {
+    navigate("/");
+  }
+
   return (
     <header style={{ backgroundColor: "red", color: "white" }}>
-      <div style={{display: "inline-block"}} className="main-header__brand">
+      <div
+        onClick={handleLogoOnClick}
+        style={{ display: "inline-block", cursor: "pointer" }}
+        className="main-header__brand"
+      >
         <h2>JobFinder</h2>
       </div>
 
-      <nav style={{display: "inline-block", margin: "auto"}}>
+      <nav style={{ display: "inline-block", margin: "auto" }}>
         {!currentUser && (
-          <ul style={{listStyle: "none"}}>
+          <ul style={{ listStyle: "none" }}>
             <li>
               <Link to="/login">Login</Link>
             </li>
@@ -38,8 +46,10 @@ function Header() {
           </ul>
         )}
         {currentUser && (
-          <ul style={{listStyle: "none"}}>
-            <li><Link to="/addJob">AddJob</Link></li>
+          <ul style={{ listStyle: "none" }}>
+            <li>
+              <Link to="/addJob">AddJob</Link>
+            </li>
             <li>
               <button onClick={handleLogout}>Logout</button>
             </li>
