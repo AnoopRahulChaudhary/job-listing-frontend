@@ -1,7 +1,6 @@
 import axios from "axios";
 import { successResponse, errorResponse } from "./responseHandler";
-
-const baseURL = "http://localhost:4000";
+import { baseURL } from "./constants";
 
 async function registerUser(data) {
   try {
