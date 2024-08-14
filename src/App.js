@@ -11,6 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/job-listing-frontend" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<UserRegistration />} />
         <Route path="/viewJob/:id" element={<ViewJob />} />
