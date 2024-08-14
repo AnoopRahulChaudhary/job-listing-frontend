@@ -2,7 +2,7 @@
   "name": "job-listing-frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://AnoopRahulChaudhary.github.io/job-listing-frontend",
+  "homepage": "https://anooprahulchaudhary.github.io/job-listing-frontend/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
