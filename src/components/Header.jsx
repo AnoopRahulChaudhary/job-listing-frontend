@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import styles from "./Header.module.css";
 
 function Header() {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ function Header() {
   }
 
   return (
-    <header style={{ backgroundColor: "red", color: "white" }}>
+    <header className={styles.main_header}>
       <div
         onClick={handleLogoOnClick}
         style={{ display: "inline-block", cursor: "pointer" }}
@@ -34,9 +35,9 @@ function Header() {
         <h2>JobFinder</h2>
       </div>
 
-      <nav style={{ display: "inline-block", margin: "auto" }}>
+      <nav className={styles.main_nav}>
         {!currentUser && (
-          <ul style={{ listStyle: "none" }}>
+          <ul className={styles.main_nav__items}>
             <li>
               <Link to="/login">Login</Link>
             </li>
@@ -46,15 +47,15 @@ function Header() {
           </ul>
         )}
         {currentUser && (
-          <ul style={{ listStyle: "none" }}>
+          <ul className={styles.main_nav__items}>
+            <li>Hello! {currentUser.username}</li>
             <li>
               <Link to="/addJob">AddJob</Link>
             </li>
             <li>
               <button onClick={handleLogout}>Logout</button>
             </li>
-            <li>Hello! {currentUser.username}</li>
-            <li>Recruiter Image</li>
+            {/* <li>Recruiter Image</li> */}
           </ul>
         )}
       </nav>

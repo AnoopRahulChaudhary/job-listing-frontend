@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getJob, updateJob } from "../api/job";
 import { useNavigate } from "react-router-dom";
+import styles from "./UpdateJob.module.css";
 
 function UpdateJob() {
   const [skill, setSkill] = useState("");
@@ -99,136 +100,127 @@ function UpdateJob() {
 
   return (
     <div>
-      <section id="jobDetailsToAdd">
-        <h2>Add Job description</h2>
-        <div className="job-details">
-          <form>
-            <div>
-              <label htmlFor="companyName">Company Name</label>
-              <input
-                type="text"
-                onChange={handleOnChange}
-                name="companyName"
-                value={jobDetails.companyName}
-              />
-            </div>
+      <section className={styles.update_job} id="jobDetailsToAdd">
+        <h2 className={styles.update_job__title}>Update Job</h2>
+        <form className={styles.update_job__form}>
+          <label htmlFor="companyName">Company Name</label>
+          <input
+            type="text"
+            onChange={handleOnChange}
+            name="companyName"
+            value={jobDetails.companyName}
+          />
 
-            <div>
-              <label htmlFor="logoUrl">Logo Url</label>
-              <input
-                type="text"
-                onChange={handleOnChange}
-                name="logoUrl"
-                value={jobDetails.logoUrl}
-              />
-            </div>
+          <label htmlFor="logoUrl">Logo Url</label>
+          <input
+            type="text"
+            onChange={handleOnChange}
+            name="logoUrl"
+            value={jobDetails.logoUrl}
+          />
 
-            <div>
-              <label htmlFor="jobPosition">Job Position</label>
-              <input
-                type="text"
-                onChange={handleOnChange}
-                name="jobPosition"
-                value={jobDetails.jobPosition}
-              />
-            </div>
+          <label htmlFor="jobPosition">Job Position</label>
+          <input
+            type="text"
+            onChange={handleOnChange}
+            name="jobPosition"
+            value={jobDetails.jobPosition}
+          />
 
-            <div>
-              <label htmlFor="monthlySalary">Monthly Salary</label>
-              <input
-                type="number"
-                onChange={handleOnChange}
-                name="monthlySalary"
-                value={jobDetails.monthlySalary}
-              />
-            </div>
+          <label htmlFor="monthlySalary">Monthly Salary</label>
+          <input
+            type="number"
+            onChange={handleOnChange}
+            name="monthlySalary"
+            value={jobDetails.monthlySalary}
+          />
 
-            <div>
-              <label htmlFor="jobType">Job Type</label>
-              <input
-                type="text"
-                onChange={handleOnChange}
-                name="jobType"
-                value={jobDetails.jobType}
-              />
-            </div>
+          <label htmlFor="jobType">Job Type</label>
+          <input
+            type="text"
+            onChange={handleOnChange}
+            name="jobType"
+            value={jobDetails.jobType}
+          />
 
-            <div>
-              <label htmlFor="isRemote">Remote/Office</label>
-              <input
-                type="text"
-                onChange={handleOnChange}
-                name="isRemote"
-                value={jobDetails.isRemote}
-              />
-            </div>
+          <label htmlFor="isRemote">Remote/Office</label>
+          <input
+            type="text"
+            onChange={handleOnChange}
+            name="isRemote"
+            value={jobDetails.isRemote}
+          />
 
-            <div>
-              <label htmlFor="location">Location</label>
-              <input
-                type="text"
-                onChange={handleOnChange}
-                name="location"
-                value={jobDetails.location}
-              />
-            </div>
+          <label htmlFor="location">Location</label>
+          <input
+            type="text"
+            onChange={handleOnChange}
+            name="location"
+            value={jobDetails.location}
+          />
 
-            <div>
-              <label htmlFor="jobDescription">Job Description</label>
-              <input
-                type="text"
-                onChange={handleOnChange}
-                name="jobDescription"
-                value={jobDetails.jobDescription}
-              />
-            </div>
+          <label htmlFor="jobDescription">Job Description</label>
+          <input
+            type="text"
+            onChange={handleOnChange}
+            name="jobDescription"
+            value={jobDetails.jobDescription}
+          />
 
-            <div>
-              <label htmlFor="aboutCompany">About Company</label>
-              <input
-                type="text"
-                onChange={handleOnChange}
-                name="aboutCompany"
-                value={jobDetails.aboutCompany}
-              />
-            </div>
+          <label htmlFor="aboutCompany">About Company</label>
+          <input
+            type="text"
+            onChange={handleOnChange}
+            name="aboutCompany"
+            value={jobDetails.aboutCompany}
+          />
 
-            <div>
-              <label htmlFor="skills">Skills Required</label>
-              <input
-                type="text"
-                onChange={handleOnChangeForSkill}
-                onKeyDown={handleOnKeyDown}
-                name="aboutCompany"
-                value={skill}
-              />
+          <label htmlFor="skills">Skills Required</label>
+          <input
+            type="text"
+            onChange={handleOnChangeForSkill}
+            onKeyDown={handleOnKeyDown}
+            name="aboutCompany"
+            value={skill}
+          />
+          {jobDetails.skills.length !== 0 && (
+            <div className={styles.update_job__new_skills}>
+              New Skills :
               {jobDetails.skills.map((skill) => (
                 <span>{skill} &nbsp;,</span>
               ))}
-
-              {oldSkills.length !== 0 && (
-                <div>
-                  Old Skills -{" "}
-                  {oldSkills.map((skill) => (
-                    <span>{skill} &nbsp;,</span>
-                  ))}
-                </div>
-              )}
             </div>
+          )}
 
-            <div>
-              <label htmlFor="information">Information</label>
-              <input
-                type="text"
-                onChange={handleOnChange}
-                name="information"
-                value={jobDetails.information}
-              />
+          {oldSkills.length !== 0 && (
+            <div className={styles.update_job__old_skills}>
+              Old Skills -{" "}
+              {oldSkills.map((skill) => (
+                <span>{skill} &nbsp;,</span>
+              ))}
             </div>
-          </form>
-        </div>
-        <button onClick={handleOnClickForCancel}>Cancel</button>
-        <button onClick={handleOnClickForUpdateJob}>Update Job</button>
+          )}
+
+          <label htmlFor="information">Information</label>
+          <input
+            type="text"
+            onChange={handleOnChange}
+            name="information"
+            value={jobDetails.information}
+          />
+        </form>
+        <button
+          className={styles.btn_update_job}
+          onClick={handleOnClickForCancel}
+        >
+          Cancel
+        </button>
+        <button
+          className={styles.btn_update_job__cancel}
+          onClick={handleOnClickForUpdateJob}
+        >
+          Update Job
+        </button>
       </section>
       {errorMessage && <div>{errorMessage}</div>}
       {successMessage && <div>{successMessage}</div>}

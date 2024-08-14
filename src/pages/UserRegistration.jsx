@@ -1,7 +1,8 @@
-import { useState, use } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./UserRegistration.module.css";
 import { registerUser } from "../api/user";
+import GoBack from "../ui/GoBack";
 
 function UserRegistration() {
   const navigate = useNavigate();
@@ -42,8 +43,9 @@ function UserRegistration() {
   }
 
   return (
-    <div className={styles.container}>
-      <form onSubmit={handleSubmit}>
+    <>
+      <GoBack />
+      <form className={styles.registration_form} onSubmit={handleSubmit}>
         <input
           type="text"
           onChange={handleOnChange}
@@ -77,7 +79,7 @@ function UserRegistration() {
         {userRegistered && <button onClick={handleLoginClick}>Login</button>}
         {errorMessage && <div>{errorMessage}</div>}
       </form>
-    </div>
+    </>
   );
 }
 

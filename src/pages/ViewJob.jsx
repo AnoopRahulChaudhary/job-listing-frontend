@@ -3,6 +3,7 @@ import { deleteJob, getJob } from "../api/job";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
+import styles from "./ViewJob.module.css";
 
 function ViewJob() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -52,38 +53,48 @@ function ViewJob() {
       <Header />
       {errorMessage && <span>{errorMessage}</span>}
       {job && (
-        <div>
-          <div
-            style={{
-              border: "1px solid black",
-              margin: "16px",
-              padding: "16px",
-            }}
-          >
-            {job.jobDescription}
+        <div className={styles.job}>
+          <div>
+            <h3>Role</h3>
+            <p>{job.jobPosition}</p>
           </div>
-          <div style={{ border: "1px solid black", padding: "16px" }}>
-            <h2>{job.jobPosition}</h2>
+          <div>
+            <h3>Description</h3>
+            <p>{job.jobDescription}</p>
+          </div>
+          <div>
+            <h3>Location</h3>
             <p>{job.location}</p>
-            <div>Stipend : {job.monthlySalary}</div>
-            <div>
-              <h6>About Company</h6>
-              <p>{job.aboutCompany}</p>
-            </div>
-            <div>
-              <h6>Skills</h6>
-              <ul>
-                {job.skills && job.skills.map((skill) => <li>{skill}</li>)}
-              </ul>
-            </div>
-
-            {currentUser && (
-              <button onClick={handleUpdateJobClick}>Update Job</button>
-            )}
-            {currentUser && (
-              <button onClick={handleDeleteJobClick}>Delete Job</button>
-            )}
           </div>
+          <div>
+            <h3>Salary</h3>
+            <p>{job.monthlySalary} $</p>
+          </div>
+          <div>
+            <h3>About Company</h3>
+            <p>{job.aboutCompany}</p>
+          </div>
+          <div>
+            <h3>Skills</h3>
+            <ul>{job.skills && job.skills.map((skill) => <li>{skill}</li>)}</ul>
+          </div>
+
+          {currentUser && (
+            <button
+              className={styles.btn__job_update}
+              onClick={handleUpdateJobClick}
+            >
+              Update Job
+            </button>
+          )}
+          {currentUser && (
+            <button
+              className={styles.btn__job_delete}
+              onClick={handleDeleteJobClick}
+            >
+              Delete Job
+            </button>
+          )}
         </div>
       )}
     </div>

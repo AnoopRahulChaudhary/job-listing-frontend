@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { login } from "../api/user.js";
 import { useNavigate } from "react-router-dom";
+import styles from "./Login.module.css";
+import GoBack from "../ui/GoBack.jsx";
 
 function Login() {
   const navigate = useNavigate();
@@ -32,8 +34,9 @@ function Login() {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <>
+      <GoBack />
+      <form className={styles.login_form} onSubmit={handleSubmit}>
         <input
           type="email"
           onChange={handleChange}
@@ -53,7 +56,7 @@ function Login() {
         {loginError && <div>{loginError}</div>}
         <input type="submit" value={"Login"} />
       </form>
-    </div>
+    </>
   );
 }
 
